@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests</title>
+    <style>
+        /* Reset spécifique pour éviter les conflits */
+        .tests-page-wrapper * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .tests-page-wrapper {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #5EE7C7 0%, #4EC9E8 50%, #6B8FDE 100%) !important;
+            padding-bottom: 4rem;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .tests-page-wrapper .header-section {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        .tests-page-wrapper .container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .tests-page-wrapper h1 {
+            color: white !important;
+            font-size: 4rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 0.5rem !important;
+            letter-spacing: 2px !important;
+            text-align: center !important;
+        }
+
+        .tests-page-wrapper .underline {
+            width: 80px;
+            height: 4px;
+            background-color: white !important;
+            margin: 0 auto 2rem;
+        }
+
+        .tests-page-wrapper .subtitle {
+            color: white !important;
+            font-size: 1.25rem !important;
+            font-weight: 300 !important;
+            margin-bottom: 3rem !important;
+            opacity: 0.95;
+            text-align: center !important;
+        }
+
+        .tests-page-wrapper .search-container {
+            background-color: white !important;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            max-width: 100%;
+        }
+
+        .tests-page-wrapper .search-container:hover {
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tests-page-wrapper .search-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .tests-page-wrapper .search-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #E74694;
+        }
+
+        .tests-page-wrapper .search-input {
+            flex: 1;
+            border: none !important;
+            outline: none !important;
+            font-size: 1.1rem !important;
+            color: #333 !important;
+            background: transparent !important;
+            width: 100%;
+        }
+
+        .tests-page-wrapper .search-input::placeholder {
+            color: #ccc !important;
+        }
+
+        /* Section des produits */
+        .tests-page-wrapper .products-section {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .tests-page-wrapper .products-grid {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 2rem !important;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        .tests-page-wrapper .product-card {
+            background: white !important;
+            border-radius: 20px !important;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease !important;
+            cursor: pointer !important;
+            text-decoration: none !important;
+            color: inherit !important;
+            display: block !important;
+            position: relative;
+        }
+
+        .tests-page-wrapper .product-card:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .tests-page-wrapper .product-card:hover h3 {
+            color: #6B8FDE !important;
+        }
+
+        .tests-page-wrapper .rating-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #FF6B9D, #E74694) !important;
+            color: white !important;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            z-index: 10;
+            box-shadow: 0 3px 10px rgba(231, 70, 148, 0.4);
+        }
+
+        .tests-page-wrapper .rating-number {
+            font-size: 1.5rem !important;
+            line-height: 1 !important;
+            color: white !important;
+        }
+
+        .tests-page-wrapper .rating-total {
+            font-size: 0.9rem !important;
+            font-weight: 400 !important;
+            color: white !important;
+            margin-left: 2px;
+        }
+
+        .tests-page-wrapper .product-image {
+            width: 100% !important;
+            height: 250px !important;
+            object-fit: contain !important;
+            background: #f5f5f5 !important;
+            display: block !important;
+        }
+
+        .tests-page-wrapper .product-content {
+            padding: 1.5rem !important;
+        }
+
+        .tests-page-wrapper .product-category {
+            color: #6B8FDE !important;
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .tests-page-wrapper .product-title {
+            color: #2c3e50 !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
+            line-height: 1.4 !important;
+            margin: 0 !important;
+            transition: color 0.3s ease !important;
+            text-align: center !important; 
+        }
+
+        /* Pagination */
+        .tests-page-wrapper .pagination {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tests-page-wrapper .pagination-btn {
+            background: white !important;
+            border: none !important;
+            padding: 0.75rem 1.25rem !important;
+            border-radius: 10px !important;
+            cursor: pointer !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+            color: #333 !important;
+        }
+
+        .tests-page-wrapper .pagination-btn:hover:not(:disabled) {
+            background: #6B8FDE !important;
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .tests-page-wrapper .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed !important;
+        }
+
+        .tests-page-wrapper .pagination-btn.active {
+            background: #6B8FDE !important;
+            color: white !important;
+        }
+
+        .tests-page-wrapper .pagination-dots {
+            color: white !important;
+            padding: 0 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .tests-page-wrapper .products-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .tests-page-wrapper .products-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1.5rem !important;
+            }
+
+            .tests-page-wrapper h1 {
+                font-size: 3rem !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .tests-page-wrapper .products-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+
+            .tests-page-wrapper h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .tests-page-wrapper .subtitle {
+                font-size: 1rem !important;
+            }
+
+            .tests-page-wrapper .product-image {
+                height: 200px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tests-page-wrapper">
+        <div class="header-section">
+            <div class="container">
+                <h1>Tests</h1>
+                <div class="underline"></div>
+                <p class="subtitle">Retrouvez tous nos tests et prises en mains</p>
+                
+                <div class="search-container">
+                    <div class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Rechercher le test d'un produit ou d'une marque"
+                        id="searchInput"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div class="products-section">
+            <div class="products-grid" id="productsGrid"></div>
+            
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </div>
+
+    <script>
+        // Données des produits (à personnaliser avec vos vraies données)
+        const productsData = [
+            {
+                id: 8,
+                title: "Test du DJI Power 2000",
+                image: "https://i.ibb.co/HLMwKSjJ/61-Rl-W-Qhzg-L-AC-UF894-1000-QL80.jpg",
+                rating: 8,
+                link: "https://conseildirect.fr/test-de-la-jbl-boombox-4"
+            },
+            {
+                id: 7,
+                title: "Test du JBL Boombox 4",
+                image: "https://i.ibb.co/0yHzQcR5/81-BO5l-EQl-WL-AC-UF1000-1000-QL80.jpg",
+                rating: 9,
+                link: "https://conseildirect.fr/test-de-la-jbl-boombox-4"
+            },
+            {
+                id: 6,
+                title: "Test du Xgimi Horizon 20 Max",
+                image: "https://i.ibb.co/hJGYKNWc/xgimi-horizon-20-max-face.jpg",
+                rating: 9,
+                link: "https://conseildirect.fr/test-du-xgimi-horizon-20-max"
+            },
+            {
+                id: 5,
+                title: "Test du Ricoh GR IV",
+                image: "https://i.ibb.co/1YnJS0g4/foto-looman-ricoh-gr-iv-1-600x600.jpg",
+                rating: 8,
+                link: "https://conseildirect.fr/test-ricoh-gr-iv"
+            },
+            {
+                id: 4,
+                title: "Test du Logitech G321 LightSpeed",
+                image: "https://i.ibb.co/KcF841kZ/g321-lightspeed-3qtr-front-left-angle-offwhite-gallery-1.png",
+                rating: 7,
+                link: "https://conseildirect.fr/test-logitech-g321-lightspeed"
+            },
+            {
+                id: 3,
+                title: "Test du Moustache lundi 20 Cargo 3",
+                image: "https://i.ibb.co/KjbHRMCC/ey-Jw-YXRo-Ijoib-W91c3-Rh-Y2hl-LWJpa2-Vz-XC9ma-Wxl-XC9-Tc1ha-UERHTm1v-QXBKSm1-BUkd-Me-C5qc-Gcif-Q-mo.jpg",
+                rating: 8,
+                link: "https://conseildirect.fr/test-moustache-lundi-20-cargo-3"
+            },
+            {
+                id: 2,
+                title: "Test du OnePlus 15",
+                image: "https://i.ibb.co/V0pdYk8K/One-Plus15-sand-1080x1080.png",
+                rating: 9,
+                link: "https://conseildirect.fr/test-oneplus-15"
+            },
+            {
+                id: 1,
+                title: "Test du Realme P3 5G",
+                image: "https://i.ibb.co/6ckhJ2c4/71-WHTasf-K-L.jpg",
+                rating: 7,
+                link: "https://conseildirect.fr/test-realme-p3-5g"
+            }
+        ];
+
+        const itemsPerPage = 20;
+        let currentPage = 1;
+        let filteredProducts = [...productsData];
+
+        function renderProducts() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageProducts = filteredProducts.slice(startIndex, endIndex);
+
+            const grid = document.getElementById('productsGrid');
+            
+            if (pageProducts.length === 0) {
+                grid.innerHTML = '<p style="color: white; text-align: center; width: 100%; padding: 2rem;">Aucun produit trouvé</p>';
+                return;
+            }
+            
+            grid.innerHTML = pageProducts.map(product => `
+                <a href="${product.link}" class="product-card">
+                    <div class="rating-badge">
+                        <span class="rating-number">${product.rating}</span>
+                        <span class="rating-total">/10</span>
+                    </div>
+                    <img src="${product.image}" alt="${product.title}" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">${product.title}</h3>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = `
+                <button class="pagination-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
+                    ← Précédent
+                </button>
+            `;
+
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    paginationHTML += `
+                        <button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">
+                            ${i}
+                        </button>
+                    `;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    paginationHTML += `<span class="pagination-dots">...</span>`;
+                }
+            }
+
+            paginationHTML += `
+                <button class="pagination-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
+                    Suivant →
+                </button>
+            `;
+
+            pagination.innerHTML = paginationHTML;
+        }
+
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+            if (page < 1 || page > totalPages) return;
+            
+            currentPage = page;
+            renderProducts();
+            renderPagination();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fonction de recherche
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                filteredProducts = productsData.filter(product => 
+                    product.title.toLowerCase().includes(searchTerm)
+                );
+                currentPage = 1;
+                renderProducts();
+                renderPagination();
+            });
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            renderPagination();
+        });
+
+        // Initialisation immédiate aussi
+        renderProducts();
+        renderPagination();
+    </script>
+</body>
+</html>
